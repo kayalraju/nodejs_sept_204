@@ -5,7 +5,9 @@ class  HomeController {
 
     async home(req,res){
         try{
-           res.render('home');
+           res.render('home',{
+            title:"home page",
+           });
         }catch(err){
             res.send(err);
         }
