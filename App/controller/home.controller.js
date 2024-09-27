@@ -12,6 +12,15 @@ class  HomeController {
             res.send(err);
         }
     }
+    async about(req,res){
+        try{
+           res.render('about',{
+            title:"about page",
+           });
+        }catch(err){
+            res.send(err);
+        }
+    }
 
 
 
