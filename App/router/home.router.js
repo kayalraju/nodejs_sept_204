@@ -10,6 +10,9 @@ router.get('/about',homeController.about)
 
  router.post('/craete/product',ProductController.craetreProduct)
  router.get('/product',ProductController.getAllProduct)
+ router.get('/product/:id',ProductController.getProductById)
+ router.post('/product/update/:id',ProductController.updateProduct)
+ router.delete('/product/delete/:id',ProductController.deleteProduct)
 
 
 module.exports = router;

@@ -38,7 +38,49 @@ class ProductController {
       }
     }
 
+    async getProductById(req,res){
+      try{
+        const id = req.params.id;
+        const data = await Product.findById(id);
+        return res.status(200).json({
+          message:"get single data",
+          data
+        })
+      }catch(err){
+        console.log(err);
+      }
+    }
 
+    async updateProduct(req,res){
+      try{
+        const id = req.params.id;
+        const {name,price,size} = req.body;
+        const data = await Product.findByIdAndUpdate(id,{
+          name,
+          price,
+          size
+        })
+        return res.status(200).json({
+          status:200,
+          message:"data updated successfully",
+        })
+      }catch(err){
+        console.log(err);
+      }
+    }
+
+    async deleteProduct(req,res){
+      try{
+        const id = req.params.id;
+        const data = await Product.findByIdAndDelete(id);
+        return res.status(200).json({
+          status:200,
+          message:"data deleted successfully",
+        })
+      }catch(err){
+        console.log(err);
+      }
+    }
 }
 
 
