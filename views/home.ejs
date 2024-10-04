@@ -4,6 +4,33 @@
   <body>
     <%-include('common/navbar')%>
 
-      <h1>Main content Home page</h1>
+      
+    <div class="container">
+      <h1>All Product</h1>
+      <a href="/addproduct" class="btn btn-primary"> Add Product</a>
+      <table class="table mt-2">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">name</th>
+            <th scope="col">price</th>
+            <th scope="col">size</th>
+            <th colspan="2">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% for(let item of products){ %>
+          <tr>
+            <th scope="row">1</th>
+            <td><%= item.name%></td>
+            <td><%= item.price%></td>
+            <td><%= item.size%></td>
+            <td>  <a href="" class="btn btn-info"> Edit</a></td>
+            <td  <a href="" class="btn btn-danger">Delete</a></td>
+          </tr>
+          <%}%>
+        </tbody>
+      </table>
+    </div>
 
       <%-include('common/footer')%>
