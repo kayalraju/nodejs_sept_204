@@ -6,11 +6,20 @@ class ProductController {
       //console.log(req.body);
       try{
         const {name,price,size} = req.body;
+        const file=req.file;
+        if(!file){
+            return res.status(400).json({
+                message:"image is required"
+            })
+        }
+        const fileName=file.filename;
+        const basePath=`${req.protocol}://${req.get('host')}/uploads/`;
 
         const data=new Product({
             name,
             price,
-            size
+            size,
+            image:`${basePath}${fileName}`
         })
         const savedata = await data.save();
         return res.status(201).json({

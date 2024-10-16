@@ -13,7 +13,8 @@ app.use(express.static('public'));
 
 app.use(express.urlencoded({extended:true}));
 app.use(express.json());
-
+//app.use('/uploads',express.static('uploads'));
+app.use('/uploads',express.static(__dirname +'/uploads'));
 
 
 const HomeRouter = require('./App/router/home.router');

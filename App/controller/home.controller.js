@@ -43,7 +43,43 @@ class  HomeController {
     }
 
 
+    async edit(req,res){
+        try{
+            const {id} = req.params;
+            const product = await ProductModel.findById(id);
+            res.render('edit',{
+                title:"edit page",
+                product:product
+            })
+        }catch(err){
+            res.send(err);
+        }
+    }
 
+    async update(req,res){
+        try{
+            const {id} = req.params;
+            const {name,price,size} = req.body;
+            const product = await ProductModel.findByIdAndUpdate(id,{
+                name,
+                price,
+                size
+            })
+            res.redirect('/');
+        }catch(err){
+            res.send(err);
+        }
+    }
+
+    async delete(req,res){
+        try{
+            const {id} = req.params;
+            const product = await ProductModel.findByIdAndDelete(id);
+            res.redirect('/');
+        }catch(err){
+            res.send(err);
+        }
+    }
 
 }
 
