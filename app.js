@@ -18,8 +18,10 @@ app.use('/uploads',express.static(__dirname +'/uploads'));
 
 
 const HomeRouter = require('./App/router/home.router');
+const csvRouter=require('./App/router/csvRouter')
 
 app.use(HomeRouter);
+app.use('/csv',csvRouter);
 const port =3001;
 
 app.listen(port,()=>{

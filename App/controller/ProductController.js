@@ -3,6 +3,7 @@ const Product = require('../model/product');
 const fs = require('fs');
 const path = require('path');
 const { Validator } = require('node-input-validator');
+const slug=require('slugify');
 class ProductController {
     async craetreProduct(req,res){
       //console.log(req.body);
@@ -32,7 +33,8 @@ class ProductController {
             name,
             price,
             size,
-            image:`${basePath}${fileName}`
+            image:`${basePath}${fileName}`,
+            slug:slug(name)
         })
         const savedata = await data.save();
         return res.status(201).json({
