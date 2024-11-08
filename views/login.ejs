@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+  <%-include('common/head')%>
+  <body>
+    <%-include('common/navbar')%>
+
+      
+       
+    <div class="container">
+        <h1>User Login</h1>
+        <form action="/login/create" method="post">
+         
+          <div class="form-group">
+            <label for="exampleInputPassword1">Email</label>
+            <input type="email" class="form-control" name="email">
+          </div>
+          <div class="form-group">
+            <label for="exampleInputPassword1">Password</label>
+            <input type="password" class="form-control" name="password" >
+          </div>
+         
+          <button type="submit" class="btn btn-primary">login</button>
+        </form>
+       
+      </div>
+
+      <%-include('common/footer')%>
