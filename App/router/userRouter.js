@@ -9,6 +9,8 @@ const router = express.Router();
 router.post('/register',userController.register );
 router.post('/login',userController.login );
 router.get('/user/dashboard',authCheck,userController.dashboard );
+router.post('/forgetPsssword',userController.forgetPsssword );
+router.post('/updates',authCheck,userController.UpdatePasswordddd );
 
 /******for web */
 router.get('/register',webController.register);

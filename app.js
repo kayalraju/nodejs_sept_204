@@ -3,6 +3,7 @@ const ejs = require('ejs');
 const dotenv = require('dotenv');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
+const bodyParser = require('body-parser');
 const connectDb = require('./App/config/db');
 
 dotenv.config();
@@ -25,6 +26,8 @@ app.use(express.static('public'));
 
 app.use(express.urlencoded({extended:true}));
 app.use(express.json());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended:true}));
 app.use('/uploads',express.static('uploads'));
 app.use('/uploads',express.static(__dirname +'/uploads'));
 

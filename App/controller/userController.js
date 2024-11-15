@@ -92,6 +92,76 @@ class UserController{
 
     }
 
+    /**forget password */
+
+    async forgetPsssword(req,res){
+       try{
+        const {email,first_school,newPassword}=req.body
+        if(!email || !first_school || !newPassword){
+            return res.status(400).json({
+                message: 'Please fill all fields'
+            })
+        }
+        const user=await userModel.findOne({email,first_school});  
+        if(!user){
+            return res.status(400).json({
+                message: 'Email id is not registered'
+            })
+        }
+        const hashed=await hashpassword(newPassword)
+        await userModel.findByIdAndUpdate(user._id,{
+            password:hashed
+        });
+        return res.status(200).json({
+            message: 'Password updated successfully'
+        })
+
+       }catch(err){
+           return res.status(400).json({
+               message: err.message
+           })
+       }    
+    }
+
+/**update password */
+
+async UpdatePasswordddd(req,res){
+    try{
+      //console.log(req.body);
+      
+        
+        const user_id=req.body.user_id;
+        const {password}=req.body; 
+        
+        const datauser=await userModel.findOne({_id:user_id});
+        console.log('ss',datauser);
+        
+        if(datauser){
+            const newPa=await hashpassword(password)
+            await userModel.findByIdAndUpdate({_id:user_id},
+                {
+                    $set:{
+                        password:newPa
+                    }
+                })
+                return res.status(200).json({
+                    message: 'Password updated successfully'
+                })  
+        }else{
+            return res.status(400).json({
+                message: 'User not found'
+            })
+        }
+       
+
+
+    }catch(err){
+        return res.status(400).json({
+            message: err.message
+        })
+    }
+}
+
     async dashboard(req,res){
         return res.status(200).json({
            meaasge:"welcome to dashboard 👌👌👌👌👌"

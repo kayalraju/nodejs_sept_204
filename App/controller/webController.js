@@ -2,26 +2,24 @@ const User = require('../model/user');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken')
 class webController {
+    //auth check
+    async AuthUser(req, res, next) {
+        if (req.user) {
+            console.log('after auth check', req.user);
+            next();
+        } else {
+            console.log('error while auth check');
+            res.redirect('/login');
+        }
 
-//auth check
-
-async AuthUser(req,res,next){
-    if(req.user){
-        console.log('after auth check',req.user);
-        next();
-    }else{
-        console.log('error while auth check');
-        res.redirect('/login');
     }
-
-}
-
 
     async register(req, res) {
         res.render('register', {
             title: "register page"
         });
     }
+
     async login(req, res) {
         res.render('login', {
             title: "register page"
@@ -30,7 +28,7 @@ async AuthUser(req,res,next){
     async dashboard(req, res) {
         res.render('dashboard', {
             title: "register page",
-            data:req.user
+            data: req.user
         });
     }
 
@@ -86,18 +84,18 @@ async AuthUser(req,res,next){
                     expiresIn: '1h'
                 });
 
-                if(token){
-                    res.cookie("userToken",token,{httpOnly:true});
+                if (token) {
+                    res.cookie("userToken", token, { httpOnly: true });
                     return res.redirect('/dashboard');
-                }else{
+                } else {
                     console.log("token not created");
-                    
+
                 }
             }
 
             else {
                 console.log("login failed");
-               return res.redirect('/login');
+                return res.redirect('/login');
             }
         }
 
