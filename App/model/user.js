@@ -19,12 +19,16 @@ const userSchema = new Schema({
     },
     first_school: {
         type: String,
-        required: true
+        default: 'school'
     },
     role:{
         type: String,
         default: 'user'
-    }
+    },
+    is_verified: {
+         type: Boolean, 
+         default: false 
+        },
 },{
     timestamps: true
 });

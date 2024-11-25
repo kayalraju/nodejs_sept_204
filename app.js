@@ -4,6 +4,7 @@ const dotenv = require('dotenv');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const bodyParser = require('body-parser');
+const cors=require('cors');
 const connectDb = require('./App/config/db');
 
 dotenv.config();
@@ -20,6 +21,7 @@ app.use(session({
 //**cookie setup */
 app.use(cookieParser());
 
+app.use(cors());
 app.set('view engine','ejs');
 app.set('views','views')
 app.use(express.static('public'));

@@ -7,6 +7,7 @@ const router = express.Router();
 
 //******for api */
 router.post('/register',userController.register );
+router.post('/verify-email',userController.verifyEmail );
 router.post('/login',userController.login );
 router.get('/user/dashboard',authCheck,userController.dashboard );
 router.post('/forgetPsssword',userController.forgetPsssword );
