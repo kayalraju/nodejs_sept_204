@@ -10,6 +10,8 @@ router.post('/register',userController.register );
 router.post('/verify-email',userController.verifyEmail );
 router.post('/login',userController.login );
 router.get('/user/dashboard',authCheck,userController.dashboard );
+router.post('/reset-password-link', userController.sendUserPasswordResetLink)
+router.post('/reset-password/:id/:token', userController.PasswordReset)
 router.post('/forgetPsssword',userController.forgetPsssword );
 router.post('/updates',authCheck,userController.UpdatePasswordddd );
 

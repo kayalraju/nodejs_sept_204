@@ -7,9 +7,13 @@ const bodyParser = require('body-parser');
 const cors=require('cors');
 const connectDb = require('./App/config/db');
 
+
 dotenv.config();
 const app = express();
 connectDb()
+
+
+
 
 /**session setup */
 app.use(session({
